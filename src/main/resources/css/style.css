@@ -1,0 +1,112 @@
+html, body {
+  margin: 10px;
+  padding: 0;
+}
+
+body {
+  background: none repeat scroll 0 0 #D4D0C8;
+  margin: 0;
+}
+
+html, body, table, td, div {
+  font-family: Arial,Helvetica,sansserif;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+
+body table tr td table tr th {
+  background-color: #989490;
+  border: 1px solid #FFFFFF;
+}
+
+body table tr td table tr td {
+  background-color: #C8C4BC;
+  border: 1px solid #FFFFFF;
+}
+
+table.tableInfo tr td, table.tableLink tr td {
+  border: 0 none;
+  background: none;
+}
+
+.headerPage {
+  background: none repeat scroll 0 0 #3C3A39;
+  color: #FFFFFF;
+  font-family: Arial,Helvetica,sansserif;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 0.5em;
+  text-align: left;
+}
+
+.headerSubreport {
+  background: none repeat scroll 0 0 #3C3A39;
+  color: #FFFFFF;
+  font-family: Arial,Helvetica,sansserif;
+  font-size: 1.2em;
+  margin-top: 2em;
+  padding: 0.5em 0 0.2em 0.5em;
+}
+
+.tableInfo {
+  margin: 20px 0px;
+}
+
+.tableLink {
+  margin-bottom: 40px;
+}
+
+.tableLink a, .tableLink a:link, .tableLink a:visited {
+  display: block;
+  background: #3C3A39;
+  text-align: right;
+  vertical-align: text-bottom;
+  color:  #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 1em 0.5em 0em 0em;
+  border: 1px solid #3C3A39;
+}
+
+.tableLink a:hover {
+  background: #C8C4BC;
+}
+
+.linkToOverview {}
+
+.tableLink .linkToOverview a, .tableLink .linkToOverview a:link, .tableLink .linkToOverview a:visited {
+  background: #989490;
+}
+
+.tableLink .linkToOverview a:hover {
+  background: #C8C4BC;
+}
+
+.cellHeader, .cellOdd, .cellEven {
+  font-family: Arial,Helvetica,sansserif;
+  padding: 2px 5px;
+}
+
+.cellHeader {
+  background-color: #989490;
+  border: 0 none;
+  color: #000000;
+  text-align: center;
+}
+
+.cellOdd {
+  background-color: #C8C4BC;
+  color: #000000;
+  text-align: center;
+}
+
+.cellEven {
+  background-color: #A7BFDE;
+  color: #000000;
+  text-align: center;
+}
+
