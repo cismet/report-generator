@@ -55,14 +55,21 @@ public class GenerateReport {
     private static final String PROPERTY_REPORTFILTER_PREFIX_LEVEL2 = "reportfilter.prefix.level2";
     private static final String PROPERTY_REPORTFILTER_PREFIX_LEVEL3 = "reportfilter.prefix.level3";
     private static final String PROPERTY_REPORTFILTER_PREFIX_LEVEL4 = "reportfilter.prefix.level4";
+    private static final String PROPERTY_REPORTFILTER_PREFIX_LUNG = "reportfilter.prefix.lung";
     private static final String PROPERTY_REPORTFILTER_SUFFIX_REPORT = "reportfilter.suffix.report";
     private static final String PROPERTY_REPORTFILTER_SUFFIX_TARGET = "reportfilter.suffix.target";
     private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2 = "reportfilter.replacementToken.level2";
+    private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2_LUNG =
+        "reportfilter.replacementToken.level2.lung";
     private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3 = "reportfilter.replacementToken.level3";
+    private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3_LUNG =
+        "reportfilter.replacementToken.level3.lung";
     private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL4 = "reportfilter.replacementToken.level4";
 
     private static final String CONFIG_BATCHREPORT = "reportgenerator.properties";
     private static final String CONFIG_LOGGING = "log4j.properties";
+
+    private static String basePath;
 
     //~ Instance fields --------------------------------------------------------
 
@@ -94,7 +101,7 @@ public class GenerateReport {
      * DOCUMENT ME!
      */
     private static void initializeLogging() {
-        final File configFile = new File(CONFIG_LOGGING);
+        final File configFile = new File(basePath, CONFIG_LOGGING);
         if (!configFile.canRead() || !configFile.isFile()) {
             BasicConfigurator.configure();
         } else {
@@ -111,7 +118,7 @@ public class GenerateReport {
         Reader reader = null;
 
         try {
-            reader = new FileReader(CONFIG_BATCHREPORT);
+            reader = new FileReader(new File(basePath, CONFIG_BATCHREPORT));
             properties.load(reader);
         } catch (FileNotFoundException ex) {
             LOG.error("Couldn't find configuration file '" + CONFIG_BATCHREPORT + "'.", ex);
@@ -185,6 +192,13 @@ public class GenerateReport {
             LOG.info("Using '04' as prefix for level 4 reports.");
             properties.setProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL4, "04");
         }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PREFIX_LUNG)) {
+            LOG.warn("No prefix for lung specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PREFIX_LUNG
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'lung' as prefix for lung.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PREFIX_LUNG, "lung");
+        }
         if (!properties.containsKey(PROPERTY_REPORTFILTER_SUFFIX_REPORT)) {
             LOG.warn("No suffix for reports specified. Please add an entry '" + PROPERTY_REPORTFILTER_SUFFIX_REPORT
                         + "' in ' " + CONFIG_BATCHREPORT + "'.");
@@ -204,12 +218,26 @@ public class GenerateReport {
             LOG.info("Using 'stalu' as replacement token for level 2.");
             properties.setProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2, "stalu");
         }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2_LUNG)) {
+            LOG.warn("No replacement token for level 2 (lung) specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2_LUNG
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'fge' as replacement token for level 2 (lung).");
+            properties.setProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2_LUNG, "fge");
+        }
         if (!properties.containsKey(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3)) {
             LOG.warn("No replacement token for level 3 specified. Please add an entry '"
                         + PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3
                         + "' in ' " + CONFIG_BATCHREPORT + "'.");
             LOG.info("Using 'fge' as replacement token for level 3.");
             properties.setProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3, "fge");
+        }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3_LUNG)) {
+            LOG.warn("No replacement token for level 3 (lung) specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3_LUNG
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'bg' as replacement token for level 3 (lung).");
+            properties.setProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3_LUNG, "bg");
         }
         if (!properties.containsKey(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL4)) {
             LOG.warn("No replacement token for level 4 specified. Please add an entry '"
@@ -271,10 +299,13 @@ public class GenerateReport {
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL2),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL3),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL4),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LUNG),
                     properties.getProperty(PROPERTY_REPORTFILTER_SUFFIX_REPORT),
                     properties.getProperty(PROPERTY_REPORTFILTER_SUFFIX_TARGET),
                     properties.getProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2),
+                    properties.getProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2_LUNG),
                     properties.getProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3),
+                    properties.getProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL3_LUNG),
                     properties.getProperty(PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL4));
         } catch (Exception ex) {
             LOG.error(
@@ -299,11 +330,32 @@ public class GenerateReport {
             parameters.clear();
         }
 
+        for (final String fge : structureProvider.getLevel2Lung()) {
+            parameters.put("fge", fge);
+
+            for (final Map.Entry<String, String> entry : reportProvider.getReportsLevel2Lung(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.clear();
+        }
+
         for (final String[] stalu_fge : structureProvider.getLevel3()) {
             parameters.put("stalu", stalu_fge[0]);
             parameters.put("fge", stalu_fge[1]);
 
             for (final Map.Entry<String, String> entry : reportProvider.getReportsLevel3(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.clear();
+        }
+
+        for (final String[] fge_bg : structureProvider.getLevel3Lung()) {
+            parameters.put("fge", fge_bg[0]);
+            parameters.put("bg", fge_bg[1]);
+
+            for (final Map.Entry<String, String> entry : reportProvider.getReportsLevel3Lung(parameters).entrySet()) {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
@@ -359,6 +411,15 @@ public class GenerateReport {
      * @param  args  DOCUMENT ME!
      */
     public static void main(final String[] args) {
+        if ((args != null) && (args.length > 0)) {
+            final File basePathFile = new File(args[0]);
+            if (!basePathFile.exists()) {
+                basePath = System.getProperty("user.dir");
+            } else {
+                basePath = args[0];
+            }
+        }
+
         initializeLogging();
 
         final GenerateReport batchReport = new GenerateReport();

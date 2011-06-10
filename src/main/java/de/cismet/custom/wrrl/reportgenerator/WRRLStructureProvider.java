@@ -35,8 +35,12 @@ public class WRRLStructureProvider {
     private static final Logger LOG = Logger.getLogger(WRRLStructureProvider.class);
 
     private static final String QUERY_LEVEL2 = "SELECT DISTINCT lower(stalu) as stalu FROM statistics_dimensions";
+    private static final String QUERY_LEVEL2_LUNG =
+        "SELECT DISTINCT lower(fge) as fge FROM statistics_dimensions WHERE fge IS NOT NULL";
     private static final String QUERY_LEVEL3 =
         "SELECT DISTINCT lower(stalu) as stalu, lower(fge) as fge FROM statistics_dimensions WHERE fge IS NOT NULL";
+    private static final String QUERY_LEVEL3_LUNG =
+        "SELECT DISTINCT lower(fge) as fge, lower(bg) as bg FROM statistics_dimensions WHERE fge IS NOT NULL AND bg IS NOT NULL";
     private static final String QUERY_LEVEL4 =
         "SELECT DISTINCT lower(stalu) as stalu, lower(fge) as fge, lower(bg) as bg FROM statistics_dimensions WHERE fge IS NOT NULL AND bg IS NOT NULL";
 
@@ -119,6 +123,29 @@ public class WRRLStructureProvider {
      *
      * @return  DOCUMENT ME!
      */
+    public List<String> getLevel2Lung() {
+        List<String> result = new ArrayList<String>();
+
+        try {
+            final Statement statement = connection.createStatement();
+            final ResultSet resultSet = statement.executeQuery(QUERY_LEVEL2_LUNG);
+
+            while (resultSet.next()) {
+                result.add(resultSet.getString("fge"));
+            }
+        } catch (SQLException ex) {
+            LOG.error("Error while reading level 2 for LUNG of WRRL structure", ex);
+            result = new ArrayList<String>();
+        }
+
+        return result;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return  DOCUMENT ME!
+     */
     public List<String[]> getLevel3() {
         List<String[]> result = new ArrayList<String[]>();
 
@@ -134,6 +161,32 @@ public class WRRLStructureProvider {
             }
         } catch (SQLException ex) {
             LOG.error("Error while reading level 3 of WRRL structure", ex);
+            result = new ArrayList<String[]>();
+        }
+
+        return result;
+    }
+
+    /**
+     * DOCUMENT ME!
+     *
+     * @return  DOCUMENT ME!
+     */
+    public List<String[]> getLevel3Lung() {
+        List<String[]> result = new ArrayList<String[]>();
+
+        try {
+            final Statement statement = connection.createStatement();
+            final ResultSet resultSet = statement.executeQuery(QUERY_LEVEL3_LUNG);
+
+            while (resultSet.next()) {
+                final String[] entry = new String[2];
+                entry[0] = resultSet.getString("fge");
+                entry[1] = resultSet.getString("bg");
+                result.add(entry);
+            }
+        } catch (SQLException ex) {
+            LOG.error("Error while reading level 3 for LUNG of WRRL structure", ex);
             result = new ArrayList<String[]>();
         }
 
