@@ -8,47 +8,25 @@
     <parent>
         <groupId>de.cismet.cids</groupId>
         <artifactId>cids-parent</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.5</version>
     </parent>
-  
-    <groupId>de.cismet.custom.wrrl</groupId>
-    <artifactId>reportgenerator</artifactId>
+
+    <groupId>de.cismet.cids.custom.wrrl</groupId>
+    <artifactId>report-generator</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>reportgenerator</name>
+    <name>WRRL Report generator</name>
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.birt</groupId>
-            <artifactId>engineapi</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.birt</groupId>
-            <artifactId>coreapi</artifactId>
-            <version>2.6.1</version>
+            <groupId>org.eclipse.birt.runtime</groupId>
+            <artifactId>org.eclipse.birt.runtime</artifactId>
+            <version>4.2.0</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.birt</groupId>
-            <artifactId>modelapi</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>4.6</version>
         </dependency>
         <dependency>
             <groupId>postgresql</groupId>
@@ -62,12 +40,14 @@
             <version>1.7R2</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.3</version>
-        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>Sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

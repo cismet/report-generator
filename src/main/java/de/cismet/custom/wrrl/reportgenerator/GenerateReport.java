@@ -45,9 +45,8 @@ public class GenerateReport {
 
     private static final Logger LOG = Logger.getLogger(GenerateReport.class);
 
-    private static final String PROPERTY_GENERATE_SOURCEDIRECTORY = "generate.sourceDirectory";
     private static final String PROPERTY_GENERATE_TARGETDIRECTORY = "generate.targetDirectory";
-    private static final String PROPERTY_ENGINE_HOME = "engine.home";
+    private static final String PROPERTY_JDBC_DRIVER = "jdbc.driver";
     private static final String PROPERTY_JDBC_URL = "jdbc.url";
     private static final String PROPERTY_JDBC_USER = "jdbc.user";
     private static final String PROPERTY_JDBC_PASSWORD = "jdbc.password";
@@ -134,23 +133,17 @@ public class GenerateReport {
             }
         }
 
-        if (!properties.containsKey(PROPERTY_GENERATE_SOURCEDIRECTORY)) {
-            LOG.warn("No source directory specified. Please add an entry '" + PROPERTY_GENERATE_SOURCEDIRECTORY
-                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
-            LOG.info("Using 'reports' as source directory.");
-            properties.setProperty(PROPERTY_GENERATE_SOURCEDIRECTORY, "reports");
-        }
         if (!properties.containsKey(PROPERTY_GENERATE_TARGETDIRECTORY)) {
             LOG.warn("No target directory specified. Please add an entry '" + PROPERTY_GENERATE_TARGETDIRECTORY
                         + "' in ' " + CONFIG_BATCHREPORT + "'.");
             LOG.info("Using 'html' as target directory.");
             properties.setProperty(PROPERTY_GENERATE_TARGETDIRECTORY, "html");
         }
-        if (!properties.containsKey(PROPERTY_ENGINE_HOME)) {
-            LOG.warn("BIRT Engine home not specified. Please add an entry '" + PROPERTY_GENERATE_TARGETDIRECTORY
-                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
-            LOG.info("Using 'C:\\birt-runtime-2_6_1' as BIRT Engine home.");
-            properties.setProperty(PROPERTY_GENERATE_TARGETDIRECTORY, "C:\\birt-runtime-2_6_1");
+        if (!properties.containsKey(PROPERTY_JDBC_DRIVER)) {
+            LOG.warn("No JDBC driver specified. Please add an entry '" + PROPERTY_JDBC_URL + "' in ' "
+                        + CONFIG_BATCHREPORT
+                        + "'. Trying 'org.postgresql.Driver' now.");
+            properties.setProperty(PROPERTY_JDBC_DRIVER, "org.postgresql.Driver");
         }
         if (!properties.containsKey(PROPERTY_JDBC_URL)) {
             LOG.warn("No JDBC url specified. Please add an entry '" + PROPERTY_JDBC_URL + "' in ' " + CONFIG_BATCHREPORT
@@ -253,7 +246,6 @@ public class GenerateReport {
      */
     private void initializeEngine() {
         final EngineConfig config = new EngineConfig();
-        config.setEngineHome(properties.getProperty(PROPERTY_ENGINE_HOME));
         config.setLogFile("birt.log");
 
         try {
@@ -281,6 +273,7 @@ public class GenerateReport {
      */
     public void generateReports() {
         final WRRLStructureProvider structureProvider = WRRLStructureProvider.getWRRLStructureProvider(
+                properties.getProperty(PROPERTY_JDBC_DRIVER),
                 properties.getProperty(PROPERTY_JDBC_URL),
                 properties.getProperty(PROPERTY_JDBC_USER),
                 properties.getProperty(PROPERTY_JDBC_PASSWORD));
@@ -293,7 +286,6 @@ public class GenerateReport {
         final WRRLReportProvider reportProvider;
         try {
             reportProvider = WRRLReportProvider.getWRRLReportProvider(
-                    properties.getProperty(PROPERTY_GENERATE_SOURCEDIRECTORY),
                     properties.getProperty(PROPERTY_GENERATE_TARGETDIRECTORY),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL1),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL2),
@@ -315,6 +307,10 @@ public class GenerateReport {
         }
 
         final Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("jdbc_driver", properties.getProperty(PROPERTY_JDBC_DRIVER));
+        parameters.put("jdbc_url", properties.getProperty(PROPERTY_JDBC_URL));
+        parameters.put("jdbc_user", properties.getProperty(PROPERTY_JDBC_USER));
+        parameters.put("jdbc_password", properties.getProperty(PROPERTY_JDBC_PASSWORD));
 
         for (final Map.Entry<String, String> entry : reportProvider.getReportsLevel1().entrySet()) {
             generateReport(entry.getKey(), entry.getValue(), parameters);
@@ -327,7 +323,7 @@ public class GenerateReport {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
-            parameters.clear();
+            parameters.remove("stalu");
         }
 
         for (final String fge : structureProvider.getLevel2Lung()) {
@@ -337,7 +333,7 @@ public class GenerateReport {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
-            parameters.clear();
+            parameters.remove("fge");
         }
 
         for (final String[] stalu_fge : structureProvider.getLevel3()) {
@@ -348,7 +344,8 @@ public class GenerateReport {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
-            parameters.clear();
+            parameters.remove("stalu");
+            parameters.remove("fge");
         }
 
         for (final String[] fge_bg : structureProvider.getLevel3Lung()) {
@@ -359,7 +356,8 @@ public class GenerateReport {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
-            parameters.clear();
+            parameters.remove("fge");
+            parameters.remove("bg");
         }
 
         for (final String[] stalu_fge_bg : structureProvider.getLevel4()) {
@@ -371,7 +369,9 @@ public class GenerateReport {
                 generateReport(entry.getKey(), entry.getValue(), parameters);
             }
 
-            parameters.clear();
+            parameters.remove("stalu");
+            parameters.remove("fge");
+            parameters.remove("bg");
         }
     }
 
@@ -384,10 +384,7 @@ public class GenerateReport {
      */
     public void generateReport(final String source, final String target, final Map<String, String> parameters) {
         try {
-            final IReportRunnable runnable = engine.openReportDesign(
-                    properties.getProperty(PROPERTY_GENERATE_SOURCEDIRECTORY)
-                            + File.separator
-                            + source);
+            final IReportRunnable runnable = engine.openReportDesign(source);
             final IRunAndRenderTask task = engine.createRunAndRenderTask(runnable);
 
             options.setOutputFileName(

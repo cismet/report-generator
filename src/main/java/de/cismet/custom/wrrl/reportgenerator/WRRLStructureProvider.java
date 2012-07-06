@@ -64,19 +64,21 @@ public class WRRLStructureProvider {
     /**
      * DOCUMENT ME!
      *
-     * @param   url   DOCUMENT ME!
-     * @param   user  DOCUMENT ME!
-     * @param   pass  DOCUMENT ME!
+     * @param   driver  DOCUMENT ME!
+     * @param   url     DOCUMENT ME!
+     * @param   user    DOCUMENT ME!
+     * @param   pass    DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public static WRRLStructureProvider getWRRLStructureProvider(final String url,
+    public static WRRLStructureProvider getWRRLStructureProvider(final String driver,
+            final String url,
             final String user,
             final String pass) {
         WRRLStructureProvider result = null;
 
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName(driver);
         } catch (ClassNotFoundException ex) {
             LOG.error("PostgreSQL driver couldn't be loaded.", ex);
             return result;
