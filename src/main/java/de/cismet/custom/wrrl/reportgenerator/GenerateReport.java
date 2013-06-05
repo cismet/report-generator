@@ -45,6 +45,7 @@ public class GenerateReport {
 
     private static final Logger LOG = Logger.getLogger(GenerateReport.class);
 
+    private static final String PROPERTY_GENERATE_SOURCEDIRECTORY = "generate.sourceDirectory";
     private static final String PROPERTY_GENERATE_TARGETDIRECTORY = "generate.targetDirectory";
     private static final String PROPERTY_JDBC_DRIVER = "jdbc.driver";
     private static final String PROPERTY_JDBC_URL = "jdbc.url";
@@ -133,6 +134,12 @@ public class GenerateReport {
             }
         }
 
+        if (!properties.containsKey(PROPERTY_GENERATE_SOURCEDIRECTORY)) {
+            LOG.warn("No source directory specified. Please add an entry '" + PROPERTY_GENERATE_SOURCEDIRECTORY
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'reports' as source directory.");
+            properties.setProperty(PROPERTY_GENERATE_SOURCEDIRECTORY, "reports");
+        }
         if (!properties.containsKey(PROPERTY_GENERATE_TARGETDIRECTORY)) {
             LOG.warn("No target directory specified. Please add an entry '" + PROPERTY_GENERATE_TARGETDIRECTORY
                         + "' in ' " + CONFIG_BATCHREPORT + "'.");
@@ -286,6 +293,7 @@ public class GenerateReport {
         final WRRLReportProvider reportProvider;
         try {
             reportProvider = WRRLReportProvider.getWRRLReportProvider(
+                    properties.getProperty(PROPERTY_GENERATE_SOURCEDIRECTORY),
                     properties.getProperty(PROPERTY_GENERATE_TARGETDIRECTORY),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL1),
                     properties.getProperty(PROPERTY_REPORTFILTER_PREFIX_LEVEL2),

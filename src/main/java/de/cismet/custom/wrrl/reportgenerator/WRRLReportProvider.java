@@ -113,6 +113,7 @@ public class WRRLReportProvider {
     /**
      * DOCUMENT ME!
      *
+     * @param   sourceDirectory             DOCUMENT ME!
      * @param   targetDirectory             DOCUMENT ME!
      * @param   prefixLevel1                DOCUMENT ME!
      * @param   prefixLevel2                DOCUMENT ME!
@@ -131,7 +132,8 @@ public class WRRLReportProvider {
      *
      * @throws  Exception  DOCUMENT ME!
      */
-    public static WRRLReportProvider getWRRLReportProvider(final String targetDirectory,
+    public static WRRLReportProvider getWRRLReportProvider(final String sourceDirectory,
+            final String targetDirectory,
             final String prefixLevel1,
             final String prefixLevel2,
             final String prefixLevel3,
@@ -144,8 +146,7 @@ public class WRRLReportProvider {
             final String replacementTokenLevel3,
             final String replacementTokenLevel3Lung,
             final String replacementTokenLevel4) throws Exception {
-        final File source = new File(WRRLReportProvider.class.getResource("/de/cismet/custom/wrrl/reportgenerator")
-                        .toURI());
+        final File source = new File(sourceDirectory);
         final File target = new File(targetDirectory);
 
         try {
