@@ -56,6 +56,12 @@ public class GenerateReport {
     private static final String PROPERTY_REPORTFILTER_PREFIX_LEVEL3 = "reportfilter.prefix.level3";
     private static final String PROPERTY_REPORTFILTER_PREFIX_LEVEL4 = "reportfilter.prefix.level4";
     private static final String PROPERTY_REPORTFILTER_PREFIX_LUNG = "reportfilter.prefix.lung";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL0 = "reportfilter.projects.prefix.level0";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL1 = "reportfilter.projects.prefix.level1";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL2 = "reportfilter.projects.prefix.level2";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL3 = "reportfilter.projects.prefix.level3";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL4 = "reportfilter.projects.prefix.level4";
+    private static final String PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL5 = "reportfilter.projects.prefix.level5";
     private static final String PROPERTY_REPORTFILTER_SUFFIX_REPORT = "reportfilter.suffix.report";
     private static final String PROPERTY_REPORTFILTER_SUFFIX_TARGET = "reportfilter.suffix.target";
     private static final String PROPERTY_REPORTFILTER_REPLACEMENTTOKEN_LEVEL2 = "reportfilter.replacementToken.level2";
@@ -199,6 +205,52 @@ public class GenerateReport {
             LOG.info("Using 'lung' as prefix for lung.");
             properties.setProperty(PROPERTY_REPORTFILTER_PREFIX_LUNG, "lung");
         }
+
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL0)) {
+            LOG.warn("No prefix for level 0 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL0
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_00' as prefix for level 0 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL0, "p_00");
+        }
+
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL1)) {
+            LOG.warn("No prefix for level 1 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL1
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_01' as prefix for level 1 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL1, "p_01");
+        }
+
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL2)) {
+            LOG.warn("No prefix for level 2 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL2
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_02' as prefix for level 2 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL2, "p_02");
+        }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL3)) {
+            LOG.warn("No prefix for level 3 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL3
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_03' as prefix for level 3 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL3, "p_03");
+        }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL4)) {
+            LOG.warn("No prefix for level 4 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL4
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_04' as prefix for level 4 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL4, "p_04");
+        }
+        if (!properties.containsKey(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL5)) {
+            LOG.warn("No prefix for level 5 project reports specified. Please add an entry '"
+                        + PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL5
+                        + "' in ' " + CONFIG_BATCHREPORT + "'.");
+            LOG.info("Using 'p_05' as prefix for level 5 project reports.");
+            properties.setProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL5, "p_05");
+        }
+
         if (!properties.containsKey(PROPERTY_REPORTFILTER_SUFFIX_REPORT)) {
             LOG.warn("No suffix for reports specified. Please add an entry '" + PROPERTY_REPORTFILTER_SUFFIX_REPORT
                         + "' in ' " + CONFIG_BATCHREPORT + "'.");
@@ -385,6 +437,129 @@ public class GenerateReport {
 
     /**
      * DOCUMENT ME!
+     */
+    public void generateProjectReports() {
+        final ProjectStructureProvider projectStructureProvider = ProjectStructureProvider.getProjectStructureProvider(
+                properties.getProperty(PROPERTY_JDBC_DRIVER),
+                properties.getProperty(PROPERTY_JDBC_URL),
+                properties.getProperty(PROPERTY_JDBC_USER),
+                properties.getProperty(PROPERTY_JDBC_PASSWORD));
+
+        if (projectStructureProvider == null) {
+            LOG.error("Couldn't connect to the WRRL database");
+            return;
+        }
+
+        final ProjectReportProvider projectReportProvider;
+
+        try {
+            projectReportProvider = ProjectReportProvider.getProjectReportProvider(
+                    properties.getProperty(PROPERTY_GENERATE_SOURCEDIRECTORY),
+                    properties.getProperty(PROPERTY_GENERATE_TARGETDIRECTORY),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL0),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL1),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL2),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL3),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL4),
+                    properties.getProperty(PROPERTY_REPORTFILTER_PROJECTS_PREFIX_LEVEL5),
+                    properties.getProperty(PROPERTY_REPORTFILTER_SUFFIX_REPORT),
+                    properties.getProperty(PROPERTY_REPORTFILTER_SUFFIX_TARGET));
+        } catch (Exception ex) {
+            LOG.error(
+                "Could not instantiate the provider for project reports. Please check if source and target directory are valid.",
+                ex);
+            return;
+        }
+
+        final Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("jdbc_driver", properties.getProperty(PROPERTY_JDBC_DRIVER));
+        parameters.put("jdbc_url", properties.getProperty(PROPERTY_JDBC_URL));
+        parameters.put("jdbc_user", properties.getProperty(PROPERTY_JDBC_USER));
+        parameters.put("jdbc_password", properties.getProperty(PROPERTY_JDBC_PASSWORD));
+
+        for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel0().entrySet()) {
+            generateReport(entry.getKey(), entry.getValue(), parameters);
+        }
+
+        for (final String[] fge : projectStructureProvider.getFge()) {
+            parameters.put("fge", fge[0]);
+            parameters.put("fge_name", fge[1]);
+
+            for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel1(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.remove("fge");
+            parameters.remove("fge_name");
+        }
+
+        for (final String[] tmp : projectStructureProvider.getFgePe()) {
+            parameters.put("fge", tmp[0]);
+            parameters.put("fge_name", tmp[1]);
+            parameters.put("pe", tmp[2]);
+            parameters.put("pe_name", tmp[3]);
+
+            for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel2(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.remove("fge");
+            parameters.remove("pe");
+            parameters.remove("fge_name");
+            parameters.remove("pe_name");
+        }
+
+        for (final String[] tmp : projectStructureProvider.getStalu()) {
+            parameters.put("stalu", tmp[0]);
+            parameters.put("stalu_name", tmp[1]);
+
+            for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel3(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.remove("stalu");
+            parameters.remove("stalu_name");
+        }
+
+        for (final String[] tmp : projectStructureProvider.getStaluFge()) {
+            parameters.put("stalu", tmp[0]);
+            parameters.put("stalu_name", tmp[1]);
+            parameters.put("fge", tmp[2]);
+            parameters.put("fge_name", tmp[3]);
+
+            for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel4(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.remove("stalu");
+            parameters.remove("stalu_name");
+            parameters.remove("fge");
+            parameters.remove("fge_name");
+        }
+
+        for (final String[] tmp : projectStructureProvider.getStaluFgePe()) {
+            parameters.put("stalu", tmp[0]);
+            parameters.put("stalu_name", tmp[1]);
+            parameters.put("fge", tmp[2]);
+            parameters.put("fge_name", tmp[3]);
+            parameters.put("pe", tmp[4]);
+            parameters.put("pe_name", tmp[5]);
+
+            for (final Map.Entry<String, String> entry : projectReportProvider.getReportsLevel5(parameters).entrySet()) {
+                generateReport(entry.getKey(), entry.getValue(), parameters);
+            }
+
+            parameters.remove("stalu");
+            parameters.remove("stalu_name");
+            parameters.remove("fge");
+            parameters.remove("fge_name");
+            parameters.remove("pe");
+            parameters.remove("pe_name");
+        }
+    }
+
+    /**
+     * DOCUMENT ME!
      *
      * @param  source      DOCUMENT ME!
      * @param  target      DOCUMENT ME!
@@ -429,6 +604,7 @@ public class GenerateReport {
 
         final GenerateReport batchReport = new GenerateReport();
         batchReport.generateReports();
+        batchReport.generateProjectReports();
         batchReport.shutdownEngine();
     }
 }

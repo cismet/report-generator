@@ -6,7 +6,7 @@
 *
 ****************************************************/
 /*
- *  Copyright (C) 2011 jweintraut
+ *  Copyright (C) 2013 therter
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -34,26 +34,26 @@ import java.util.Map;
 /**
  * DOCUMENT ME!
  *
- * @author   jweintraut
+ * @author   therter
  * @version  $Revision$, $Date$
  */
-public class WRRLReportProvider {
+public class ProjectReportProvider {
 
     //~ Static fields/initializers ---------------------------------------------
 
-    private static final Logger LOG = Logger.getLogger(WRRLReportProvider.class);
+    private static final Logger LOG = Logger.getLogger(ProjectReportProvider.class);
 
     //~ Instance fields --------------------------------------------------------
 
     private String suffixReport;
     private String suffixTarget;
 
+    private FilenameFilter filterLevel0;
     private FilenameFilter filterLevel1;
     private FilenameFilter filterLevel2;
-    private FilenameFilter filterLevel2Lung;
     private FilenameFilter filterLevel3;
-    private FilenameFilter filterLevel3Lung;
     private FilenameFilter filterLevel4;
+    private FilenameFilter filterLevel5;
 
     private File sourceDirectory;
     private File targetDirectory;
@@ -63,46 +63,29 @@ public class WRRLReportProvider {
     /**
      * Creates a new WRRLReportProvider object.
      *
-     * @param  prefixLevel1                DOCUMENT ME!
-     * @param  prefixLevel2                DOCUMENT ME!
-     * @param  prefixLevel3                DOCUMENT ME!
-     * @param  prefixLevel4                DOCUMENT ME!
-     * @param  prefixLung                  DOCUMENT ME!
-     * @param  suffixReport                DOCUMENT ME!
-     * @param  suffixTarget                DOCUMENT ME!
-     * @param  replacementTokenLevel2      DOCUMENT ME!
-     * @param  replacementTokenLevel2Lung  DOCUMENT ME!
-     * @param  replacementTokenLevel3      DOCUMENT ME!
-     * @param  replacementTokenLevel3Lung  DOCUMENT ME!
-     * @param  replacementTokenLevel4      DOCUMENT ME!
+     * @param  prefixLevel0  prefixLung DOCUMENT ME!
+     * @param  prefixLevel1  DOCUMENT ME!
+     * @param  prefixLevel2  DOCUMENT ME!
+     * @param  prefixLevel3  DOCUMENT ME!
+     * @param  prefixLevel4  DOCUMENT ME!
+     * @param  prefixLevel5  replacementTokenLevel2 DOCUMENT ME!
+     * @param  suffixReport  DOCUMENT ME!
+     * @param  suffixTarget  DOCUMENT ME!
      */
-    private WRRLReportProvider(final String prefixLevel1,
+    private ProjectReportProvider(final String prefixLevel0,
+            final String prefixLevel1,
             final String prefixLevel2,
             final String prefixLevel3,
             final String prefixLevel4,
-            final String prefixLung,
+            final String prefixLevel5,
             final String suffixReport,
-            final String suffixTarget,
-            final String replacementTokenLevel2,
-            final String replacementTokenLevel2Lung,
-            final String replacementTokenLevel3,
-            final String replacementTokenLevel3Lung,
-            final String replacementTokenLevel4) {
+            final String suffixTarget) {
+        filterLevel0 = new ReportFilter(prefixLevel0, suffixReport);
         filterLevel1 = new ReportFilter(prefixLevel1, suffixReport);
-        filterLevel2 = new ReportFilter(prefixLevel2.concat("_").concat(replacementTokenLevel2), suffixReport);
-        filterLevel2Lung = new ReportFilter(prefixLevel2.concat("_").concat(prefixLung).concat("_").concat(
-                    replacementTokenLevel2Lung),
-                suffixReport);
-        filterLevel3 = new ReportFilter(prefixLevel3.concat("_").concat(replacementTokenLevel2).concat("_").concat(
-                    replacementTokenLevel3),
-                suffixReport);
-        filterLevel3Lung = new ReportFilter(prefixLevel3.concat("_").concat(prefixLung).concat("_").concat(
-                    replacementTokenLevel2Lung).concat("_").concat(
-                    replacementTokenLevel3Lung),
-                suffixReport);
-        filterLevel4 = new ReportFilter(prefixLevel4.concat("_").concat(replacementTokenLevel2).concat("_").concat(
-                    replacementTokenLevel3).concat("_").concat(replacementTokenLevel4),
-                suffixReport);
+        filterLevel2 = new ReportFilter(prefixLevel2, suffixReport);
+        filterLevel3 = new ReportFilter(prefixLevel3, suffixReport);
+        filterLevel4 = new ReportFilter(prefixLevel4, suffixReport);
+        filterLevel5 = new ReportFilter(prefixLevel5, suffixReport);
 
         this.suffixReport = suffixReport;
         this.suffixTarget = suffixTarget;
@@ -113,39 +96,31 @@ public class WRRLReportProvider {
     /**
      * DOCUMENT ME!
      *
-     * @param   sourceDirectory             DOCUMENT ME!
-     * @param   targetDirectory             DOCUMENT ME!
-     * @param   prefixLevel1                DOCUMENT ME!
-     * @param   prefixLevel2                DOCUMENT ME!
-     * @param   prefixLevel3                DOCUMENT ME!
-     * @param   prefixLevel4                DOCUMENT ME!
-     * @param   prefixLung                  DOCUMENT ME!
-     * @param   suffixReport                DOCUMENT ME!
-     * @param   suffixTarget                DOCUMENT ME!
-     * @param   replacementTokenLevel2      DOCUMENT ME!
-     * @param   replacementTokenLevel2Lung  DOCUMENT ME!
-     * @param   replacementTokenLevel3      DOCUMENT ME!
-     * @param   replacementTokenLevel3Lung  DOCUMENT ME!
-     * @param   replacementTokenLevel4      DOCUMENT ME!
+     * @param   sourceDirectory  DOCUMENT ME!
+     * @param   targetDirectory  DOCUMENT ME!
+     * @param   prefixLevel0     prefixLung DOCUMENT ME!
+     * @param   prefixLevel1     DOCUMENT ME!
+     * @param   prefixLevel2     DOCUMENT ME!
+     * @param   prefixLevel3     DOCUMENT ME!
+     * @param   prefixLevel4     DOCUMENT ME!
+     * @param   prefixLevel5     replacementTokenLevel2 DOCUMENT ME!
+     * @param   suffixReport     DOCUMENT ME!
+     * @param   suffixTarget     DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      *
      * @throws  Exception  DOCUMENT ME!
      */
-    public static WRRLReportProvider getWRRLReportProvider(final String sourceDirectory,
+    public static ProjectReportProvider getProjectReportProvider(final String sourceDirectory,
             final String targetDirectory,
+            final String prefixLevel0,
             final String prefixLevel1,
             final String prefixLevel2,
             final String prefixLevel3,
             final String prefixLevel4,
-            final String prefixLung,
+            final String prefixLevel5,
             final String suffixReport,
-            final String suffixTarget,
-            final String replacementTokenLevel2,
-            final String replacementTokenLevel2Lung,
-            final String replacementTokenLevel3,
-            final String replacementTokenLevel3Lung,
-            final String replacementTokenLevel4) throws Exception {
+            final String suffixTarget) throws Exception {
         final File source = new File(sourceDirectory);
         final File target = new File(targetDirectory);
 
@@ -155,19 +130,15 @@ public class WRRLReportProvider {
             throw e;
         }
 
-        final WRRLReportProvider result = new WRRLReportProvider(
+        final ProjectReportProvider result = new ProjectReportProvider(
+                prefixLevel0,
                 prefixLevel1,
                 prefixLevel2,
                 prefixLevel3,
                 prefixLevel4,
-                prefixLung,
+                prefixLevel5,
                 suffixReport,
-                suffixTarget,
-                replacementTokenLevel2,
-                replacementTokenLevel2Lung,
-                replacementTokenLevel3,
-                replacementTokenLevel3Lung,
-                replacementTokenLevel4);
+                suffixTarget);
 
         result.sourceDirectory = source;
         result.targetDirectory = target;
@@ -233,62 +204,62 @@ public class WRRLReportProvider {
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel1() {
-        return getReports(filterLevel1, null);
+    public Map<String, String> getReportsLevel0() {
+        return getReports(filterLevel0, null);
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param   replacements  DOCUMENT ME!
+     * @param   relacements  DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel2(final Map<String, String> replacements) {
-        return getReports(filterLevel2, replacements);
+    public Map<String, String> getReportsLevel1(final Map<String, String> relacements) {
+        return getReports(filterLevel1, relacements);
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param   replacements  DOCUMENT ME!
+     * @param   relacements  DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel2Lung(final Map<String, String> replacements) {
-        return getReports(filterLevel2Lung, replacements);
+    public Map<String, String> getReportsLevel2(final Map<String, String> relacements) {
+        return getReports(filterLevel2, relacements);
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param   replacements  DOCUMENT ME!
+     * @param   relacements  DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel3(final Map<String, String> replacements) {
-        return getReports(filterLevel3, replacements);
+    public Map<String, String> getReportsLevel3(final Map<String, String> relacements) {
+        return getReports(filterLevel3, relacements);
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param   replacements  DOCUMENT ME!
+     * @param   relacements  DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel3Lung(final Map<String, String> replacements) {
-        return getReports(filterLevel3Lung, replacements);
+    public Map<String, String> getReportsLevel4(final Map<String, String> relacements) {
+        return getReports(filterLevel4, relacements);
     }
 
     /**
      * DOCUMENT ME!
      *
-     * @param   replacements  DOCUMENT ME!
+     * @param   relacements  DOCUMENT ME!
      *
      * @return  DOCUMENT ME!
      */
-    public Map<String, String> getReportsLevel4(final Map<String, String> replacements) {
-        return getReports(filterLevel4, replacements);
+    public Map<String, String> getReportsLevel5(final Map<String, String> relacements) {
+        return getReports(filterLevel5, relacements);
     }
 }

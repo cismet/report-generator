@@ -1,0 +1,2747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.0.v20120611 Build &lt;4.2.0.v20120612-1721></property>
+    <list-property name="userProperties">
+        <structure>
+            <property name="name">Längen- und Flächenstatistik.01_mv.x</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">Längen- und Flächenstatistik.01_mv.y</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+    </list-property>
+    <property name="Längen- und Flächenstatistik.01_mv.x">135</property>
+    <property name="Längen- und Flächenstatistik.01_mv.y">80</property>
+    <simple-property-list name="includeResource">
+        <value>wrrl_reports</value>
+    </simple-property-list>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">72</property>
+            <expression name="value" type="javascript">params["jdbc_driver"].value</expression>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">72</property>
+            <expression name="value" type="javascript">params["jdbc_url"].value</expression>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">72</property>
+            <expression name="value" type="javascript">params["jdbc_user"].value</expression>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">72</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">72</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">72</property>
+            <expression name="value" type="javascript">params["jdbc_password"].value</expression>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">72</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">72</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">72</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/grouped_listing.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.groupedlisting</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/style.css</property>
+            <property name="externalCssURI">./css/style.css</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="stalu" id="1175">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="jdbc_driver" id="1328">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="jdbc_url" id="1329">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="jdbc_user" id="1330">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="jdbc_password" id="1331">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="wrrl-db" id="72">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">org.postgresql.Driver</property>
+            <property name="odaURL">jdbc:postgresql://kif:5432/wrrl</property>
+            <property name="odaUser">postgres</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">eA==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="02_stalu" id="73">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">gewaesserkategorie</property>
+                    <text-property name="displayName">gewaesserkategorie</text-property>
+                    <text-property name="heading">gewaesserkategorie</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">stalu</property>
+                    <text-property name="displayName">stalu</text-property>
+                    <text-property name="heading">stalu</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fge</property>
+                    <text-property name="displayName">fge</text-property>
+                    <text-property name="heading">fge</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">bg</property>
+                    <text-property name="displayName">bg</text-property>
+                    <text-property name="heading">bg</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">tg</property>
+                    <text-property name="displayName">tg</text-property>
+                    <text-property name="heading">tg</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">wk_k</property>
+                    <text-property name="displayName">wk_k</text-property>
+                    <text-property name="heading">wk_k</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">flaeche</property>
+                    <text-property name="displayName">flaeche</text-property>
+                    <text-property name="heading">flaeche</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ordnung</property>
+                    <text-property name="displayName">ordnung</text-property>
+                    <text-property name="heading">ordnung</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">einfluss</property>
+                    <text-property name="displayName">einfluss</text-property>
+                    <text-property name="heading">einfluss</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_oeko</property>
+                    <text-property name="displayName">zustand_oeko</text-property>
+                    <text-property name="heading">zustand_oeko</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_chem</property>
+                    <text-property name="displayName">zustand_chem</text-property>
+                    <text-property name="heading">zustand_chem</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_menge</property>
+                    <text-property name="displayName">zustand_menge</text-property>
+                    <text-property name="heading">zustand_menge</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">klasse_oeko</property>
+                    <text-property name="displayName">klasse_oeko</text-property>
+                    <text-property name="heading">klasse_oeko</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">klasse_chem</property>
+                    <text-property name="displayName">klasse_chem</text-property>
+                    <text-property name="heading">klasse_chem</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">klasse_strukturguete</property>
+                    <text-property name="displayName">klasse_strukturguete</text-property>
+                    <text-property name="heading">klasse_strukturguete</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_gen_cond</property>
+                    <text-property name="displayName">zustand_gen_cond</text-property>
+                    <text-property name="heading">zustand_gen_cond</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_phyto</property>
+                    <text-property name="displayName">zustand_phyto</text-property>
+                    <text-property name="heading">zustand_phyto</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_ben_inv</property>
+                    <text-property name="displayName">zustand_ben_inv</text-property>
+                    <text-property name="heading">zustand_ben_inv</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_hydromorph</property>
+                    <text-property name="displayName">zustand_hydromorph</text-property>
+                    <text-property name="heading">zustand_hydromorph</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_mac_algae</property>
+                    <text-property name="displayName">zustand_mac_algae</text-property>
+                    <text-property name="heading">zustand_mac_algae</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">zustand_bewirtschaftung</property>
+                    <text-property name="displayName">zustand_bewirtschaftung</text-property>
+                    <text-property name="heading">zustand_bewirtschaftung</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fristverlaengerung</property>
+                    <text-property name="displayName">fristverlaengerung</text-property>
+                    <text-property name="heading">fristverlaengerung</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">schneidet_landesgrenze</property>
+                    <text-property name="displayName">schneidet_landesgrenze</text-property>
+                    <text-property name="heading">schneidet_landesgrenze</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">typ_lawa</property>
+                    <text-property name="displayName">typ_lawa</text-property>
+                    <text-property name="heading">typ_lawa</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">typ_see</property>
+                    <text-property name="displayName">typ_see</text-property>
+                    <text-property name="heading">typ_see</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">typ_grundwasser_leiter</property>
+                    <text-property name="displayName">typ_grundwasser_leiter</text-property>
+                    <text-property name="heading">typ_grundwasser_leiter</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">typ_kuestengewaesserwasserkoerper</property>
+                    <text-property name="displayName">typ_kuestengewaesserwasserkoerper</text-property>
+                    <text-property name="heading">typ_kuestengewaesserwasserkoerper</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen</property>
+                    <text-property name="displayName">anzahl_messstellen</text-property>
+                    <text-property name="heading">anzahl_messstellen</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_bio</property>
+                    <text-property name="displayName">anzahl_messstellen_bio</text-property>
+                    <text-property name="heading">anzahl_messstellen_bio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_chem</property>
+                    <text-property name="displayName">anzahl_messstellen_chem</text-property>
+                    <text-property name="heading">anzahl_messstellen_chem</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_wrrl_chem_phys</property>
+                    <text-property name="displayName">anzahl_messstellen_wrrl_chem_phys</text-property>
+                    <text-property name="heading">anzahl_messstellen_wrrl_chem_phys</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_wrrl_chem_stoffe</property>
+                    <text-property name="displayName">anzahl_messstellen_wrrl_chem_stoffe</text-property>
+                    <text-property name="heading">anzahl_messstellen_wrrl_chem_stoffe</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_wrrl_chem_bio</property>
+                    <text-property name="displayName">anzahl_messstellen_wrrl_chem_bio</text-property>
+                    <text-property name="heading">anzahl_messstellen_wrrl_chem_bio</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_messstellen_wrrl_chem_menge</property>
+                    <text-property name="displayName">anzahl_messstellen_wrrl_chem_menge</text-property>
+                    <text-property name="heading">anzahl_messstellen_wrrl_chem_menge</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_stau</property>
+                    <text-property name="displayName">querbau_stau</text-property>
+                    <text-property name="heading">querbau_stau</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_durchlass</property>
+                    <text-property name="displayName">querbau_durchlass</text-property>
+                    <text-property name="heading">querbau_durchlass</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_sohlgleite</property>
+                    <text-property name="displayName">querbau_sohlgleite</text-property>
+                    <text-property name="heading">querbau_sohlgleite</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_schleuse</property>
+                    <text-property name="displayName">querbau_schleuse</text-property>
+                    <text-property name="heading">querbau_schleuse</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_talsperre</property>
+                    <text-property name="displayName">querbau_talsperre</text-property>
+                    <text-property name="heading">querbau_talsperre</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_wasserkraft</property>
+                    <text-property name="displayName">querbau_wasserkraft</text-property>
+                    <text-property name="heading">querbau_wasserkraft</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">querbau_fischaufstieg</property>
+                    <text-property name="displayName">querbau_fischaufstieg</text-property>
+                    <text-property name="heading">querbau_fischaufstieg</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rohrleitung_laenge</property>
+                    <text-property name="displayName">rohrleitung_laenge</text-property>
+                    <text-property name="heading">rohrleitung_laenge</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_wasserkraftwerke</property>
+                    <text-property name="displayName">anzahl_wasserkraftwerke</text-property>
+                    <text-property name="heading">anzahl_wasserkraftwerke</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_schoepfwerke</property>
+                    <text-property name="displayName">anzahl_schoepfwerke</text-property>
+                    <text-property name="heading">anzahl_schoepfwerke</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">einleitung_weniger_als_2000ew</property>
+                    <text-property name="displayName">einleitung_weniger_als_2000ew</text-property>
+                    <text-property name="heading">einleitung_weniger_als_2000ew</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">einleitung_2000ew_und_mehr</property>
+                    <text-property name="displayName">einleitung_2000ew_und_mehr</text-property>
+                    <text-property name="heading">einleitung_2000ew_und_mehr</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">anzahl_wasserwerke</property>
+                    <text-property name="displayName">anzahl_wasserwerke</text-property>
+                    <text-property name="heading">anzahl_wasserwerke</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_flaeche</property>
+                    <text-property name="displayName">massnahmen_flaeche</text-property>
+                    <text-property name="heading">massnahmen_flaeche</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_anzahl</property>
+                    <text-property name="displayName">massnahmen_anzahl</text-property>
+                    <text-property name="heading">massnahmen_anzahl</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_anzahl_1_bis_99</property>
+                    <text-property name="displayName">massnahmen_anzahl_1_bis_99</text-property>
+                    <text-property name="heading">massnahmen_anzahl_1_bis_99</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_anzahl_501_bis_508</property>
+                    <text-property name="displayName">massnahmen_anzahl_501_bis_508</text-property>
+                    <text-property name="heading">massnahmen_anzahl_501_bis_508</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_aus_bvp</property>
+                    <text-property name="displayName">massnahmen_aus_bvp</text-property>
+                    <text-property name="heading">massnahmen_aus_bvp</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_umgesetzt</property>
+                    <text-property name="displayName">massnahmen_umgesetzt</text-property>
+                    <text-property name="heading">massnahmen_umgesetzt</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_priorisiert</property>
+                    <text-property name="displayName">massnahmen_priorisiert</text-property>
+                    <text-property name="heading">massnahmen_priorisiert</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">massnahmen_durchgefuehrt</property>
+                    <text-property name="displayName">massnahmen_durchgefuehrt</text-property>
+                    <text-property name="heading">massnahmen_durchgefuehrt</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">fge_name</property>
+                    <text-property name="displayName">fge_name</text-property>
+                    <text-property name="heading">fge_name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">stalu</property>
+                    <property name="paramName">stalu</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">"hro"</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">gewaesserkategorie</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">stalu</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">fge</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">bg</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">tg</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">wk_k</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">id_8</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">wk_k_9</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">flaeche</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">ordnung</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">einfluss</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">zustand_oeko</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">zustand_chem</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">zustand_menge</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">klasse_oeko</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">klasse_chem</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">klasse_strukturguete</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">zustand_gen_cond</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">zustand_phyto</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">zustand_ben_inv</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">zustand_hydromorph</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">zustand_mac_algae</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">zustand_bewirtschaftung</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">fristverlaengerung</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">schneidet_landesgrenze</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">typ_lawa</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">typ_see</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">typ_grundwasser_leiter</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">typ_kuestengewaesserwasserkoerper</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">anzahl_messstellen</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">anzahl_messstellen_bio</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">anzahl_messstellen_chem</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">anzahl_messstellen_wrrl_chem_phys</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">anzahl_messstellen_wrrl_chem_stoffe</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">anzahl_messstellen_wrrl_chem_bio</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">37</property>
+                        <property name="name">anzahl_messstellen_wrrl_chem_menge</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">38</property>
+                        <property name="name">querbau_stau</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">39</property>
+                        <property name="name">querbau_durchlass</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">40</property>
+                        <property name="name">querbau_sohlgleite</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">41</property>
+                        <property name="name">querbau_schleuse</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">42</property>
+                        <property name="name">querbau_talsperre</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">43</property>
+                        <property name="name">querbau_wasserkraft</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">44</property>
+                        <property name="name">querbau_fischaufstieg</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">45</property>
+                        <property name="name">rohrleitung_laenge</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">46</property>
+                        <property name="name">anzahl_wasserkraftwerke</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">47</property>
+                        <property name="name">anzahl_schoepfwerke</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">48</property>
+                        <property name="name">einleitung_weniger_als_2000ew</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">49</property>
+                        <property name="name">einleitung_2000ew_und_mehr</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">50</property>
+                        <property name="name">anzahl_wasserwerke</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">51</property>
+                        <property name="name">massnahmen_flaeche</property>
+                        <property name="dataType">float</property>
+                    </structure>
+                    <structure>
+                        <property name="position">52</property>
+                        <property name="name">massnahmen_anzahl</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">53</property>
+                        <property name="name">massnahmen_anzahl_1_bis_99</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">54</property>
+                        <property name="name">massnahmen_anzahl_501_bis_508</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">55</property>
+                        <property name="name">massnahmen_aus_bvp</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">56</property>
+                        <property name="name">massnahmen_umgesetzt</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">57</property>
+                        <property name="name">massnahmen_priorisiert</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">58</property>
+                        <property name="name">massnahmen_durchgefuehrt</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">59</property>
+                        <property name="name">fge_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">wrrl-db</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">gewaesserkategorie</property>
+                    <property name="nativeName">gewaesserkategorie</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">stalu</property>
+                    <property name="nativeName">stalu</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">fge</property>
+                    <property name="nativeName">fge</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">bg</property>
+                    <property name="nativeName">bg</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">tg</property>
+                    <property name="nativeName">tg</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">wk_k</property>
+                    <property name="nativeName">wk_k</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">id_8</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">wk_k_9</property>
+                    <property name="nativeName">wk_k</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">flaeche</property>
+                    <property name="nativeName">flaeche</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">ordnung</property>
+                    <property name="nativeName">ordnung</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">einfluss</property>
+                    <property name="nativeName">einfluss</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">zustand_oeko</property>
+                    <property name="nativeName">zustand_oeko</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">zustand_chem</property>
+                    <property name="nativeName">zustand_chem</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">zustand_menge</property>
+                    <property name="nativeName">zustand_menge</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">klasse_oeko</property>
+                    <property name="nativeName">klasse_oeko</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">klasse_chem</property>
+                    <property name="nativeName">klasse_chem</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">klasse_strukturguete</property>
+                    <property name="nativeName">klasse_strukturguete</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">zustand_gen_cond</property>
+                    <property name="nativeName">zustand_gen_cond</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">zustand_phyto</property>
+                    <property name="nativeName">zustand_phyto</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">zustand_ben_inv</property>
+                    <property name="nativeName">zustand_ben_inv</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">zustand_hydromorph</property>
+                    <property name="nativeName">zustand_hydromorph</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">zustand_mac_algae</property>
+                    <property name="nativeName">zustand_mac_algae</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">zustand_bewirtschaftung</property>
+                    <property name="nativeName">zustand_bewirtschaftung</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">fristverlaengerung</property>
+                    <property name="nativeName">fristverlaengerung</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">schneidet_landesgrenze</property>
+                    <property name="nativeName">schneidet_landesgrenze</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">typ_lawa</property>
+                    <property name="nativeName">typ_lawa</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">typ_see</property>
+                    <property name="nativeName">typ_see</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">typ_grundwasser_leiter</property>
+                    <property name="nativeName">typ_grundwasser_leiter</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">typ_kuestengewaesserwasserkoerper</property>
+                    <property name="nativeName">typ_kuestengewaesserwasserkoerper</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">anzahl_messstellen</property>
+                    <property name="nativeName">anzahl_messstellen</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">anzahl_messstellen_bio</property>
+                    <property name="nativeName">anzahl_messstellen_bio</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">anzahl_messstellen_chem</property>
+                    <property name="nativeName">anzahl_messstellen_chem</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">anzahl_messstellen_wrrl_chem_phys</property>
+                    <property name="nativeName">anzahl_messstellen_wrrl_chem_phys</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">anzahl_messstellen_wrrl_chem_stoffe</property>
+                    <property name="nativeName">anzahl_messstellen_wrrl_chem_stoffe</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">anzahl_messstellen_wrrl_chem_bio</property>
+                    <property name="nativeName">anzahl_messstellen_wrrl_chem_bio</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">37</property>
+                    <property name="name">anzahl_messstellen_wrrl_chem_menge</property>
+                    <property name="nativeName">anzahl_messstellen_wrrl_chem_menge</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">38</property>
+                    <property name="name">querbau_stau</property>
+                    <property name="nativeName">querbau_stau</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">39</property>
+                    <property name="name">querbau_durchlass</property>
+                    <property name="nativeName">querbau_durchlass</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">40</property>
+                    <property name="name">querbau_sohlgleite</property>
+                    <property name="nativeName">querbau_sohlgleite</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">41</property>
+                    <property name="name">querbau_schleuse</property>
+                    <property name="nativeName">querbau_schleuse</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">42</property>
+                    <property name="name">querbau_talsperre</property>
+                    <property name="nativeName">querbau_talsperre</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">43</property>
+                    <property name="name">querbau_wasserkraft</property>
+                    <property name="nativeName">querbau_wasserkraft</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">44</property>
+                    <property name="name">querbau_fischaufstieg</property>
+                    <property name="nativeName">querbau_fischaufstieg</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">45</property>
+                    <property name="name">rohrleitung_laenge</property>
+                    <property name="nativeName">rohrleitung_laenge</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">46</property>
+                    <property name="name">anzahl_wasserkraftwerke</property>
+                    <property name="nativeName">anzahl_wasserkraftwerke</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">47</property>
+                    <property name="name">anzahl_schoepfwerke</property>
+                    <property name="nativeName">anzahl_schoepfwerke</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">48</property>
+                    <property name="name">einleitung_weniger_als_2000ew</property>
+                    <property name="nativeName">einleitung_weniger_als_2000ew</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">49</property>
+                    <property name="name">einleitung_2000ew_und_mehr</property>
+                    <property name="nativeName">einleitung_2000ew_und_mehr</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">50</property>
+                    <property name="name">anzahl_wasserwerke</property>
+                    <property name="nativeName">anzahl_wasserwerke</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">51</property>
+                    <property name="name">massnahmen_flaeche</property>
+                    <property name="nativeName">massnahmen_flaeche</property>
+                    <property name="dataType">float</property>
+                </structure>
+                <structure>
+                    <property name="position">52</property>
+                    <property name="name">massnahmen_anzahl</property>
+                    <property name="nativeName">massnahmen_anzahl</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">53</property>
+                    <property name="name">massnahmen_anzahl_1_bis_99</property>
+                    <property name="nativeName">massnahmen_anzahl_1_bis_99</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">54</property>
+                    <property name="name">massnahmen_anzahl_501_bis_508</property>
+                    <property name="nativeName">massnahmen_anzahl_501_bis_508</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">55</property>
+                    <property name="name">massnahmen_aus_bvp</property>
+                    <property name="nativeName">massnahmen_aus_bvp</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">56</property>
+                    <property name="name">massnahmen_umgesetzt</property>
+                    <property name="nativeName">massnahmen_umgesetzt</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">57</property>
+                    <property name="name">massnahmen_priorisiert</property>
+                    <property name="nativeName">massnahmen_priorisiert</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">58</property>
+                    <property name="name">massnahmen_durchgefuehrt</property>
+                    <property name="nativeName">massnahmen_durchgefuehrt</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">59</property>
+                    <property name="name">fge_name</property>
+                    <property name="nativeName">fge_name</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+    DISTINCT d.*, m.*, g.fge_name
+FROM
+    statistics_dimensions d,
+    statistics_measures m,
+    ogc.teilgebiete g
+WHERE
+    d.wk_k = m.wk_k
+    AND lower(d.stalu) = ?
+    AND g.fge_nr = d.fge]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>id</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>gewaesserkategorie</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>gewaesserkategorie</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>gewaesserkategorie</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>stalu</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>stalu</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>stalu</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>fge</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fge</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fge</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>bg</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>bg</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>bg</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>tg</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>tg</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>tg</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>wk_k</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>wk_k</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>wk_k</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>id</design:name>
+            <design:position>8</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>wk_k</design:name>
+            <design:position>9</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>wk_k</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>wk_k</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>flaeche</design:name>
+            <design:position>10</design:position>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>flaeche</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>flaeche</design:label>
+            <design:formattingHints>
+              <design:displaySize>24</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>ordnung</design:name>
+            <design:position>11</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ordnung</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ordnung</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>einfluss</design:name>
+            <design:position>12</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>einfluss</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>einfluss</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_oeko</design:name>
+            <design:position>13</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_oeko</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_oeko</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_chem</design:name>
+            <design:position>14</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_chem</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_chem</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_menge</design:name>
+            <design:position>15</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_menge</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_menge</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>klasse_oeko</design:name>
+            <design:position>16</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>klasse_oeko</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>klasse_oeko</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>klasse_chem</design:name>
+            <design:position>17</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>klasse_chem</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>klasse_chem</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>klasse_strukturguete</design:name>
+            <design:position>18</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>klasse_strukturguete</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>klasse_strukturguete</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_gen_cond</design:name>
+            <design:position>19</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_gen_cond</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_gen_cond</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_phyto</design:name>
+            <design:position>20</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_phyto</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_phyto</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_ben_inv</design:name>
+            <design:position>21</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_ben_inv</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_ben_inv</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_hydromorph</design:name>
+            <design:position>22</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_hydromorph</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_hydromorph</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_mac_algae</design:name>
+            <design:position>23</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_mac_algae</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_mac_algae</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>zustand_bewirtschaftung</design:name>
+            <design:position>24</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>zustand_bewirtschaftung</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>zustand_bewirtschaftung</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>fristverlaengerung</design:name>
+            <design:position>25</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>128</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>fristverlaengerung</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>fristverlaengerung</design:label>
+            <design:formattingHints>
+              <design:displaySize>128</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>schneidet_landesgrenze</design:name>
+            <design:position>26</design:position>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>schneidet_landesgrenze</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>schneidet_landesgrenze</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>typ_lawa</design:name>
+            <design:position>27</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>256</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>typ_lawa</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>typ_lawa</design:label>
+            <design:formattingHints>
+              <design:displaySize>256</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>typ_see</design:name>
+            <design:position>28</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>typ_see</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>typ_see</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>typ_grundwasser_leiter</design:name>
+            <design:position>29</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>typ_grundwasser_leiter</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>typ_grundwasser_leiter</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>typ_kuestengewaesserwasserkoerper</design:name>
+            <design:position>30</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2147483647</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>typ_kuestengewaesserwasserkoerper</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>typ_kuestengewaesserwasserkoerper</design:label>
+            <design:formattingHints>
+              <design:displaySize>2147483647</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen</design:name>
+            <design:position>31</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_bio</design:name>
+            <design:position>32</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_bio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_bio</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_chem</design:name>
+            <design:position>33</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_chem</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_chem</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_wrrl_chem_phys</design:name>
+            <design:position>34</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_wrrl_chem_phys</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_wrrl_chem_phys</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_wrrl_chem_stoffe</design:name>
+            <design:position>35</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_wrrl_chem_stoffe</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_wrrl_chem_stoffe</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_wrrl_chem_bio</design:name>
+            <design:position>36</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_wrrl_chem_bio</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_wrrl_chem_bio</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_messstellen_wrrl_chem_menge</design:name>
+            <design:position>37</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_messstellen_wrrl_chem_menge</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_messstellen_wrrl_chem_menge</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_stau</design:name>
+            <design:position>38</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_stau</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_stau</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_durchlass</design:name>
+            <design:position>39</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_durchlass</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_durchlass</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_sohlgleite</design:name>
+            <design:position>40</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_sohlgleite</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_sohlgleite</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_schleuse</design:name>
+            <design:position>41</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_schleuse</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_schleuse</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_talsperre</design:name>
+            <design:position>42</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_talsperre</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_talsperre</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_wasserkraft</design:name>
+            <design:position>43</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_wasserkraft</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_wasserkraft</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>querbau_fischaufstieg</design:name>
+            <design:position>44</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>querbau_fischaufstieg</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>querbau_fischaufstieg</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>rohrleitung_laenge</design:name>
+            <design:position>45</design:position>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>rohrleitung_laenge</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>rohrleitung_laenge</design:label>
+            <design:formattingHints>
+              <design:displaySize>24</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_wasserkraftwerke</design:name>
+            <design:position>46</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_wasserkraftwerke</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_wasserkraftwerke</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_schoepfwerke</design:name>
+            <design:position>47</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_schoepfwerke</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_schoepfwerke</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>einleitung_weniger_als_2000ew</design:name>
+            <design:position>48</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>einleitung_weniger_als_2000ew</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>einleitung_weniger_als_2000ew</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>einleitung_2000ew_und_mehr</design:name>
+            <design:position>49</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>einleitung_2000ew_und_mehr</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>einleitung_2000ew_und_mehr</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>anzahl_wasserwerke</design:name>
+            <design:position>50</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>anzahl_wasserwerke</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>anzahl_wasserwerke</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_flaeche</design:name>
+            <design:position>51</design:position>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+            <design:precision>17</design:precision>
+            <design:scale>17</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_flaeche</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_flaeche</design:label>
+            <design:formattingHints>
+              <design:displaySize>24</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_anzahl</design:name>
+            <design:position>52</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_anzahl</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_anzahl</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_anzahl_1_bis_99</design:name>
+            <design:position>53</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_anzahl_1_bis_99</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_anzahl_1_bis_99</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_anzahl_501_bis_508</design:name>
+            <design:position>54</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_anzahl_501_bis_508</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_anzahl_501_bis_508</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_aus_bvp</design:name>
+            <design:position>55</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_aus_bvp</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_aus_bvp</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_umgesetzt</design:name>
+            <design:position>56</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_umgesetzt</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_umgesetzt</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_priorisiert</design:name>
+            <design:position>57</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_priorisiert</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_priorisiert</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>massnahmen_durchgefuehrt</design:name>
+            <design:position>58</design:position>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>massnahmen_durchgefuehrt</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>massnahmen_durchgefuehrt</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+       </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="title" id="1260">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">stalu</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">wrrl-db</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+    name
+FROM
+    ogc.stalu_10_baum
+WHERE
+    lower(id::varchar(128)) like lower(?)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:DataSetParameters>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>1</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:precision>0</design:precision>
+        <design:scale>0</design:scale>
+        <design:nullability>Unknown</design:nullability>
+      </design:attributes>
+    </design:parameterDefinitions>
+  </design:DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>staun_n</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>staun_n</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>staun_n</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="02_stalu" id="74">
+            <property name="dimensions">
+                <tabular-dimension name="Gewässerkategorie" id="75">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="76">
+                            <property name="levels">
+                                <tabular-level name="gewaesserkategorie" id="77">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">gewaesserkategorie</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Einfluss" id="173">
+                    <property name="defaultHierarchy">NewTabularHierarchy3</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy3" id="174">
+                            <property name="levels">
+                                <tabular-level name="einfluss" id="175">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">einfluss</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Ökologischer Zustand" id="223">
+                    <property name="defaultHierarchy">NewTabularHierarchy4</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy4" id="224">
+                            <property name="levels">
+                                <tabular-level name="zustand_oeko" id="225">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_oeko</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Chemischer Zustand" id="329">
+                    <property name="defaultHierarchy">NewTabularHierarchy5</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy5" id="330">
+                            <property name="levels">
+                                <tabular-level name="zustand_chem" id="331">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_chem</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Mengenmäßiger Zustand" id="376">
+                    <property name="defaultHierarchy">NewTabularHierarchy6</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy6" id="377">
+                            <property name="levels">
+                                <tabular-level name="zustand_menge" id="378">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_menge</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Ökologische Klasse" id="379">
+                    <property name="defaultHierarchy">NewTabularHierarchy7</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy7" id="380">
+                            <property name="levels">
+                                <tabular-level name="klasse_oeko" id="381">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">klasse_oeko</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Chemische Klasse" id="382">
+                    <property name="defaultHierarchy">NewTabularHierarchy8</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy8" id="383">
+                            <property name="levels">
+                                <tabular-level name="klasse_chem" id="384">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">klasse_chem</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Physikalisch-chemischer Zustand" id="532">
+                    <property name="defaultHierarchy">NewTabularHierarchy9</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy9" id="533">
+                            <property name="levels">
+                                <tabular-level name="zustand_gen_cond" id="534">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_gen_cond</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Hydromorphologischer Zustand" id="535">
+                    <property name="defaultHierarchy">NewTabularHierarchy10</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy10" id="536">
+                            <property name="levels">
+                                <tabular-level name="zustand_hydromorph" id="537">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_hydromorph</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Biologischer Zustand (Makroalgen)" id="538">
+                    <property name="defaultHierarchy">NewTabularHierarchy11</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy11" id="539">
+                            <property name="levels">
+                                <tabular-level name="zustand_mac_algae" id="540">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_mac_algae</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Biologischer Zustand (Phytoplankton)" id="541">
+                    <property name="defaultHierarchy">NewTabularHierarchy12</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy12" id="542">
+                            <property name="levels">
+                                <tabular-level name="zustand_phyto" id="543">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_phyto</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Biologischer Zustand (Makrozoobenthos)" id="544">
+                    <property name="defaultHierarchy">NewTabularHierarchy13</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy13" id="545">
+                            <property name="levels">
+                                <tabular-level name="zustand_ben_inv" id="546">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">zustand_ben_inv</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Schneidet Landesgrenze" id="841">
+                    <property name="defaultHierarchy">NewTabularHierarchy14</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy14" id="842">
+                            <property name="levels">
+                                <tabular-level name="schneidet_landesgrenze" id="843">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">schneidet_landesgrenze</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="LAWA-Typen" id="951">
+                    <property name="defaultHierarchy">NewTabularHierarchy15</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy15" id="952">
+                            <property name="levels">
+                                <tabular-level name="typ_lawa" id="953">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">typ_lawa</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Seetypen" id="955">
+                    <property name="defaultHierarchy">NewTabularHierarchy16</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy16" id="956">
+                            <property name="levels">
+                                <tabular-level name="typ_see" id="957">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">typ_see</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Grundwasserleitertypen" id="958">
+                    <property name="defaultHierarchy">NewTabularHierarchy17</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy17" id="959">
+                            <property name="levels">
+                                <tabular-level name="typ_grundwasser_leiter" id="960">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">typ_grundwasser_leiter</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Küstengewässertypen" id="961">
+                    <property name="defaultHierarchy">NewTabularHierarchy18</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy18" id="962">
+                            <property name="levels">
+                                <tabular-level name="typ_kuestengewaesserwasserkoerper" id="963">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">typ_kuestengewaesserwasserkoerper</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="FGE" id="1176">
+                    <property name="defaultHierarchy">NewTabularHierarchy19</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy19" id="1177">
+                            <property name="levels">
+                                <tabular-level name="fge_name" id="1178">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">fge_name</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Anzahl" id="81">
+                    <property name="measures">
+                        <tabular-measure name="wk_k" id="82">
+                            <property name="function">count</property>
+                            <expression name="measureExpression" type="javascript">dataSetRow["wk_k"]</expression>
+                            <property name="dataType">integer</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+                <tabular-measure-group name="Fläche" id="83">
+                    <property name="measures">
+                        <tabular-measure name="flaeche" id="84">
+                            <expression name="measureExpression" type="javascript">dataSetRow["flaeche"]</expression>
+                            <property name="dataType">float</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+                <tabular-measure-group name="Schneidet Landesgrenze" id="822">
+                    <property name="measures">
+                        <tabular-measure name="schneidet_landesgrenze" id="823">
+                            <property name="function">count</property>
+                            <expression name="measureExpression" type="javascript">dataSetRow["schneidet_landesgrenze"]</expression>
+                            <property name="dataType">integer</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">02_stalu</property>
+        </tabular-cube>
+    </cubes>
+    <page-setup>
+        <simple-master-page name="WRRL MasterPage" id="2">
+            <property name="type">custom</property>
+            <property name="height">768px</property>
+            <property name="width">1024px</property>
+            <property name="leftMargin">0.25in</property>
+            <property name="backgroundColor">#D4D0C8</property>
+            <page-header>
+                <grid id="1312">
+                    <column id="1313"/>
+                    <column id="1314"/>
+                    <column id="1315"/>
+                    <row id="1316">
+                        <cell id="1317">
+                            <property name="style">headerLeft</property>
+                        </cell>
+                        <cell id="1318">
+                            <property name="style">headerCenter</property>
+                            <label id="1188">
+                                <property name="style">headerPage</property>
+                                <property name="fontFamily">sans-serif</property>
+                                <property name="fontWeight">normal</property>
+                                <property name="textUnderline">none</property>
+                                <text-property name="text" key="header_statistic">Statistik Mecklenburg Vorpommern</text-property>
+                            </label>
+                        </cell>
+                        <cell id="1319">
+                            <property name="style">headerRight</property>
+                        </cell>
+                    </row>
+                </grid>
+            </page-header>
+            <page-footer>
+                <grid id="1320">
+                    <column id="1321"/>
+                    <column id="1322"/>
+                    <column id="1323"/>
+                    <row id="1324">
+                        <cell id="1325">
+                            <property name="style">footerLeft</property>
+                        </cell>
+                        <cell id="1326">
+                            <property name="style">footerCenter</property>
+                        </cell>
+                        <cell id="1327">
+                            <property name="style">footerRight</property>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="1300">
+            <property name="style">tableInfo</property>
+            <property name="width">400px</property>
+            <column id="1301">
+                <property name="width">50%</property>
+            </column>
+            <column id="1302">
+                <property name="width">50%</property>
+            </column>
+            <row id="1303">
+                <cell id="1304">
+                    <label id="1283">
+                        <text-property name="text" key="header_timestampOfCreation"></text-property>
+                    </label>
+                </cell>
+                <cell id="1305">
+                    <text id="1285">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                    </text>
+                </cell>
+            </row>
+            <row id="1306">
+                <cell id="1307">
+                    <label id="1288">
+                        <text-property name="text" key="header_StALU"></text-property>
+                    </label>
+                </cell>
+                <cell id="1308">
+                    <data id="1311">
+                        <property name="whiteSpace">nowrap</property>
+                        <property name="dataSet">title</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">name</property>
+                                <text-property name="displayName">name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">name</property>
+                    </data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="1273">
+            <property name="style">tableLink</property>
+            <property name="width">800px</property>
+            <column id="1274">
+                <property name="width">25%</property>
+            </column>
+            <column id="1275">
+                <property name="width">25%</property>
+            </column>
+            <column id="1276">
+                <property name="width">25%</property>
+            </column>
+            <column id="1277">
+                <property name="width">25%</property>
+            </column>
+            <row id="1293">
+                <cell id="1294">
+                    <text id="1295">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<A name="02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_allgemein" href="./02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_allgemein.html" >
+Allgemeine Angaben
+</A>]]></text-property>
+                    </text>
+                </cell>
+                <cell id="1296">
+                    <text id="1297">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<A name="02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_zustand" href="./02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_zustand.html" >
+Zustand
+</A>]]></text-property>
+                    </text>
+                </cell>
+                <cell id="1298">
+                    <text id="1309">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<A name="02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_belastungen" href="./02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_belastungen.html" >
+Belastungen
+</A>]]></text-property>
+                    </text>
+                </cell>
+                <cell id="1299">
+                    <text id="1310">
+                        <property name="contentType">html</property>
+                        <text-property name="content"><![CDATA[<A name="02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_messstellen" href="./02_<VALUE-OF>params["stalu"].value.replace("/","")</VALUE-OF>_messstellen.html" >
+Messstellen
+</A>]]></text-property>
+                    </text>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>
